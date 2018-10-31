@@ -10,7 +10,7 @@ public class Maze {
    { 1 , 0 , 0 , 0 , 0 , 1 , 1 , 0 },
    { 1 , 0 , 1 , 1 , 1 , 0 , 1 , 0 },
    { 1 , 0 , 0 , 0 , 0 , 0 , 1 , 0 },
-   { 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 },
+   { 1 , 1 , 1 , 1 , 1 , 1 , 0 , 1 },
    { 1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
    };
 	
@@ -29,10 +29,10 @@ public class Maze {
 			return true;
 		}else{
 			maze[x][y] = PATH_COLOR;
-			if(findMazePath(x-1, y) 
-			|| findMazePath(x+1, y) 
-			|| findMazePath(x, y-1) 
-			|| findMazePath(x, y+1)
+			if(findMazePath(x-1, y) || findMazePath(x-1, y-1)
+			|| findMazePath(x+1, y) || findMazePath(x+1, y-1)
+			|| findMazePath(x, y-1) || findMazePath(x-1, y-1) 
+			|| findMazePath(x, y+1) || findMazePath(x+1, y-1)
 			){
 				return true;
 			}
