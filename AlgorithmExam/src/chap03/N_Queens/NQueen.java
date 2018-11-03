@@ -44,18 +44,12 @@ public class NQueen {
 	
 	boolean promising(int level) {
 	    for(int i=0;i<level;i++){
-	        //level 위치에 현재 시험할 퀸이 놓여져 있는 상태이고
-	        //우리는 그 퀸과 i= 0 ~ level-1 에 놓여있는 퀸이 문제를 일으키는지만 보면 된다.
-	        
 	        	
 	        
 	        if(cols[i]==cols[level] || Math.abs(level-i)== Math.abs(cols[level]-cols[i])){
-	            //i번째 퀸의 위치와 level위치의 퀸이 같은 일직선상에 있는경우
-	            //또는
-	            //i번째 퀸의 위치와 level위치의 퀸이 대각선상에 있는 경우.
-	            //밑변과 높이가 같으면 대각선상에 있다고 볼수 있다.
+	        
 	            return false;
-	            //이 경우는 불가능 하므로 false를 리턴
+	          
 	        }
 	        
 	    }

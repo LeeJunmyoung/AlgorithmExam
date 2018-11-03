@@ -5,9 +5,9 @@ public class NQueenCounting {
 	static int count = 0;
     public static boolean isPromising(int[] q, int n) {
         for (int i = 0; i < n; i++) {
-            if (q[i] == q[n]) return false;   // °°Àº ¿­ÀÎÁö
-            if ((q[i] - q[n]) == (n - i)) return false;   // '\' ¹æÇâ
-            if ((q[n] - q[i]) == (n - i)) return false;   // '/' ¹æÇâ
+            if (q[i] == q[n]) return false;  //ì •ë°©í–¥
+            if ((q[i] - q[n]) == (n - i)) return false; //  ì˜¤ë¥¸ìª½ëŒ€ê°
+            if ((q[n] - q[i]) == (n - i)) return false;  // ì™¼ìª½ ëŒ€ê°
         }
         return true;
     }
@@ -19,13 +19,13 @@ public class NQueenCounting {
 
     public static void enumerate(int[] q, int n) {
         int N = q.length;
-        // nÀÌ ³¡±îÁö µ¹¾Ò´Ù¸é Ä«¿îÆ®¸¦ Áõ°¡ÇÑ´Ù.
+        
         if (n == N) {
             count++;
         } else {
             for (int i = 0; i < N; i++) {
                 q[n] = i;
-                if (isPromising(q, n)) enumerate(q, n + 1);   // À¯¸ÁÇÏ´Ù¸é °è¼Ó Å½»ö(Àç±ÍÈ£Ãâ)
+                if (isPromising(q, n)) enumerate(q, n + 1);  
             }
         }
     }
