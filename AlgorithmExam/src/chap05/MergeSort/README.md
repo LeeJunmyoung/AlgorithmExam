@@ -14,3 +14,5 @@
 * 단점 : 데이터와 동일한 배열크기의 값을 생성 해야함.....
 
 ![MergeSort](./MergeSort.gif)
+
+증명 : https://www.youtube.com/watch?v=1K9ebQJosvo
