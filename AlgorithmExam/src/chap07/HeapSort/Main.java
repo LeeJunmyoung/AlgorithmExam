@@ -15,7 +15,7 @@ public class Main {
 		
 		HeapSort.heapSort(arr);
         
-		System.out.println("정렬 전 : "+ Arrays.toString(arr)); 
+		System.out.println("정렬 후 : "+ Arrays.toString(arr)); 
 	}
 
 }
