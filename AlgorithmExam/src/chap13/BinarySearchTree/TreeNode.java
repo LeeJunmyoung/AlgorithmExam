@@ -4,6 +4,7 @@ public class TreeNode {
 
 	private TreeNode leftNode;
 	private TreeNode rightNode;
+	private TreeNode parentNode;
 	private int data;
 	
 	public TreeNode(){
@@ -22,6 +23,10 @@ public class TreeNode {
 	public void addRightSubTree(TreeNode rightNode) {
 		this.rightNode = rightNode;
 	}
+	public void addParentNode(TreeNode parentNode){
+		this.parentNode = parentNode;
+	}
+	
 
 	public TreeNode getLeftNode() {
 		return leftNode;
@@ -29,6 +34,10 @@ public class TreeNode {
 
 	public TreeNode getRightNode() {
 		return rightNode;
+	}
+
+	public TreeNode getParentNode() {
+		return parentNode;
 	}
 
 	public int getData() {
