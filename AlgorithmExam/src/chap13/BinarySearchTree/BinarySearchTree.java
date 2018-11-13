@@ -113,6 +113,9 @@ public class BinarySearchTree {
 		return null;
 	}
 	
+	//삭제시 왼쪽이 있을시
+	//왼쪽트리의 가장 큰값으로 대체
+	//오른쪽트리의 가장 작은값으로 대체
 	public void deleteNode(int _data){
 		TreeNode node = searchNode(_data);
 		TreeNode replaceNode=null;
