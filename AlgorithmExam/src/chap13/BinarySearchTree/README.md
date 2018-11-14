@@ -1,4 +1,4 @@
-# 12. Binary Search Tree
+# 13. Binary Search Tree
 
 > 컴퓨터 과학에서 이진 탐색 트리(BST: binary search tree)는 다음과 같은 속성이 있는 이진 트리 자료 구조이다.  
 > 각 노드에 값이 있다.  
