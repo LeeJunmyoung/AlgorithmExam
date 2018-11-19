@@ -3,10 +3,10 @@ package chap15.Hashing;
 import java.math.BigDecimal;
 
 
-public class Hash {
+public class HashTableChaining {
 	
 	public static void main(String [] args) throws CloneNotSupportedException{
-		Hash hash = new Hash(10);
+		HashTableChaining hash = new HashTableChaining(10);
 		
 		hash.add("CLRS");
 		hash.add("ABCD");
@@ -41,7 +41,7 @@ public class Hash {
     private Data[] dataTable;
     
     // size 설정
-    public Hash(int size){
+    public HashTableChaining(int size){
         this.size = size;
         this.dataTable = new Data[size];
     }
