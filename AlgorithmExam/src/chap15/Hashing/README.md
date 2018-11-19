@@ -52,5 +52,26 @@
 > 따라서 최악의 경우 탐색 시간은 O(n) + 해쉬함수 계산시간  
 > 평균시간복잡도는 키들이 여러 슬롯에 얼마나 잘 분배되느냐에 의해서 결정  
 
+<hr>
+
+* Open Addressing  
+> 모든 키를 해쉬 테이블 자체에 저장  
+> 기법 : Linear probling , Quadratic probing , Double hashing  
+
+1. Liear Probing
+- h(k), h(k)+1 , h(k)+2 ...순서로 검사하여 처음을로 빈 슬롯에 저장 .
+- 테이블의 끝에 도달하면 다시 처음으로 circular 하게 돌아감. 
+- 검색시 빈슬롯 혹은 찾는 값이 있을때 까지 검색.
+
+단점 : primary cluster : 키에 의해서 채워진 연속된 슬롯들을 의미. 이런 클러스터가 생성되면 이 클러스터는 점점 더 커지는 경향이 새임.
+
+2. Quadratic Probing
+- 충돌 발생시 h(k), h(h)+1^2 , h(k)+2^2 , h(k)+3^2 ... 순서
+
+3. Double hashing
+- 서로 다른 두 해쉬 함수 h_1 과 h_2를 이용하여 
+
+   
+
 
 
