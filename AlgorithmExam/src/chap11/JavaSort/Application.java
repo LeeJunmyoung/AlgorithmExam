@@ -15,30 +15,42 @@ public class Application {
 										.setDate(Calendar.getInstance().getTime())
 										.setId(UUID.randomUUID().toString())
 										.setName("C");
-		Thread.sleep(2000);
+		
 		
 		Storage storage2 = new Storage()
 										.setDate(Calendar.getInstance().getTime())
 										.setId(UUID.randomUUID().toString())
 										.setName("D");
-		Thread.sleep(2000);
+		
 		Storage storage3 = new Storage()
 										.setDate(Calendar.getInstance().getTime())
 										.setId(UUID.randomUUID().toString())
 										.setName("F");
+		
+		Storage storage4 = new Storage()
+				.setDate(Calendar.getInstance().getTime())
+				.setId(UUID.randomUUID().toString())
+				.setName("F");
 		ArrayList<Storage> list = new ArrayList<>();
 		list.add(storage1);
 		list.add(storage3);
 		list.add(storage2);
-		
-		System.out.println(Arrays.toString(list.toArray()));
-		
+		list.add(storage4);
 		Storage[] arrStorage = list.toArray(new Storage[list.size()]);
+		
+		System.out.println("정렬 전 : "+Arrays.toString(list.toArray()));
+		
+		list.sort(Comparator.comparing(Storage::getName));
+		System.out.println("정렬 후 : "+Arrays.toString(list.toArray()));
+		
+		System.out.println();
+		
+		System.out.println("배열 정렬 전 : "+Arrays.toString(arrStorage));
 		Arrays.sort(arrStorage);
-		System.out.println(Arrays.toString(arrStorage));
+		System.out.println("배열 정렬 후 : "+Arrays.toString(arrStorage));
 		// 배열로 변환후 솔트 ...
 		
-		
+		System.out.println();
 		
 		/*
 			람다식을 이용한 정렬
