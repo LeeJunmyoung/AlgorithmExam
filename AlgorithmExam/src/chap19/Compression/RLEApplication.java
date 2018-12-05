@@ -6,10 +6,11 @@ public class RLEApplication {
 	public static void main(String[] args) {
 		String text = "AAAAAAAAAAAAAAABBDDDCCDDED";
 		
-		
-		System.out.println(RunLengthEncoding.encode(text));
-		System.out.println(RunLengthEncoding.decode(text));
-		System.out.println(text);
+		String encodeText= RunLengthEncoding.encode(text);
+		String decodeText= RunLengthEncoding.decode(encodeText);
+		System.out.println(encodeText);
+		System.out.println(decodeText);
+		System.out.println(text.equals(decodeText));
 	}
 }
 
