@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 
-public class HuffmanNNRLECompressApplication {
+public class HuffmanNRLECompressApplication {
 
 	public static void main(String args[]) throws IOException {
 		
@@ -17,23 +17,27 @@ public class HuffmanNNRLECompressApplication {
 		fin.close();*/
 		
 		Heap<Run> heap = new Heap();
-		Run run = new Run('A', 3, 1);
-		Run run1 = new Run('C', 2, 1);
-		Run run2 = new Run('A', 1, 1);
-		Run run3 = new Run('B', 1, 2);
-		Run run4 = new Run('A', 2, 2);
+		Run run = new Run('A', 3, 5);
+		Run run1 = new Run('B', 2, 4);
+		Run run2 = new Run('C', 1, 3);
+		Run run3 = new Run('D', 1, 2);
+		Run run4 = new Run('E', 2, 5);
+		Run run5 = new Run('F', 2, 1);
+		Run run6 = new Run('G', 2, 1);
+		
+		
 		heap.insert(run1);
 		heap.insert(run);
 		heap.insert(run2);
 		heap.insert(run3);
 		heap.insert(run4);
-		System.out.println(heap.extractMin());
-		System.out.println(heap.extractMin());
-		System.out.println(heap.extractMin());
-		System.out.println(heap.extractMin());
-		System.out.println(heap.extractMin());
+		heap.insert(run5);
+		heap.insert(run6);
 		
-		
+		int []arr = new int[5];
+		HuffmanCode huffmanCode = new HuffmanCode();
+		huffmanCode.createHuffmanTree(heap);
+		huffmanCode.printEachCharacterCode(huffmanCode.theRoot, arr, 0);
 	}
 	
 }
@@ -41,23 +45,74 @@ class HuffmanCode{
 	
 	private static ArrayList<Run> runs=new ArrayList<Run>();
 	
-	private Heap<Run> heap;
-	private Run theRoot = null;
+	public Heap<Run> heap;
+	public Run theRoot;
 	
-	private void createHuffmanTree() {
-		heap= new Heap();
+	public void createHuffmanTree(Heap _heap) {
+		this.heap= _heap;
+		makeHuffmanTree();
 	}
 	
 	static void collectRuns(RandomAccessFile fin) throws IOException{
 		
 	}
 	
+	void makeHuffmanTree() {
+		Run newRun;
+		while(true) {
+			
+			Run leftChild  = heap.extractMin();
+			
+			Run RightChild = heap.extractMin();
+			
+			
+			
+			newRun = new Run(' ', 0, leftChild.freq+RightChild.freq);
+			newRun.leftRun = leftChild;
+			newRun.rightRun = RightChild;
+			
+			
+			if(heap.isEmpty()) break;
+			
+			heap.insert(newRun);
+		}
+		theRoot = newRun;
+		
+	}
+	
+	public void printEachCharacterCode(Run htRoot, int []trace, int top)
+	{
+		// left를 탐색할 경우 0을 출력하고, right를 탐색할 경우 1을 출력을 합니다.
+		// 단말 노드를 만났을 경우, 즉, left right 모두 null일 경우 단말 노드의 character를 출력합니다.
+		
+		if(htRoot.leftRun != null)
+		{
+			trace[top] = 0;
+			printEachCharacterCode(htRoot.leftRun, trace, top+1);
+		}
+		if(htRoot.rightRun != null)
+		{
+			trace[top] = 1;
+			printEachCharacterCode(htRoot.rightRun, trace, top+1);
+		}
+
+		if(htRoot.leftRun == null && htRoot.rightRun == null) // 단말 노드를 만났을 경우
+		{
+			System.out.print(htRoot.symbol + "(빈도 수: " + htRoot.freq +"): ");
+			for(int i=0;i<top;i++)
+				System.out.print(trace[i]);
+			System.out.println("");
+		}
+	}
+	
 }
 
 class Run {
-	char symbol;
-	int run_length;
-	int freq;
+	public char symbol=' ';
+	public int run_length=0;
+	public int freq=0;
+	public Run leftRun;
+	public Run rightRun;
 	
 	
 	public Run(char symbol, int run_length, int freq) {
@@ -66,24 +121,7 @@ class Run {
 		this.run_length = run_length;
 		this.freq = freq;
 	}
-	public char getSymbol() {
-		return symbol;
-	}
-	public void setSymbol(char symbol) {
-		this.symbol = symbol;
-	}
-	public int getRun_length() {
-		return run_length;
-	}
-	public void setRun_length(int run_length) {
-		this.run_length = run_length;
-	}
-	public int getFreq() {
-		return freq;
-	}
-	public void setFreq(int freq) {
-		this.freq = freq;
-	}
+	
 	@Override
 	public String toString() {
 		return "Run [symbol=" + symbol + ", run_length=" + run_length + ", freq=" + freq + "]";
@@ -113,8 +151,8 @@ class Heap<T extends Run>{
         int i = list.size() - 1;
         int parent = parent(i);
 
-        while ( (parent != i && list.get(i).getFreq() < list.get(parent).getFreq())
-        		|| (parent != i && (list.get(i).getFreq() == list.get(parent).getFreq() && list.get(i).getRun_length() > list.get(parent).getRun_length()  ))
+        while ( (parent != i && list.get(i).freq < list.get(parent).freq)
+        		|| (parent != i && (list.get(i).freq == list.get(parent).freq && list.get(i).run_length > list.get(parent).run_length  ))
         		) {
 
             swap(i, parent);
@@ -134,7 +172,7 @@ class Heap<T extends Run>{
 
         if (list.size() == 0) {
 
-            throw new IllegalStateException("MinHeap is EMPTY");
+            return null;
         } else if (list.size() == 1) {
 
             T min = list.remove(0);
@@ -150,27 +188,10 @@ class Heap<T extends Run>{
         minHeapify(0);
 
         // return min key
+        
         return min;
     }
 
-    public void decreaseKey(int i, T key) {
-
-        if (list.get(i).getFreq() < key.getFreq()) {
-
-            throw new IllegalArgumentException("Key is larger than the original key");
-        }
-
-        list.set(i, key);
-        int parent = parent(i);
-
-        // bubble-up until heap property is maintained
-        while (i > 0 && list.get(parent).getFreq() > list.get(i).getFreq()) {
-
-            swap(i, parent);
-            i = parent;
-            parent = parent(parent);
-        }
-    }
 
     private void minHeapify(int i) {
 
@@ -179,13 +200,13 @@ class Heap<T extends Run>{
         int smallest = -1;
 
         // find the smallest key between current node and its children.
-        if (left <= list.size() - 1 && list.get(left).getFreq() < list.get(i).getFreq()) {
+        if (left <= list.size() - 1 && list.get(left).freq < list.get(i).freq) {
             smallest = left;
         } else {
             smallest = i;
         }
 
-        if (right <= list.size() - 1 && list.get(right).getFreq() < list.get(smallest).getFreq()) {
+        if (right <= list.size() - 1 && list.get(right).freq < list.get(smallest).freq) {
             smallest = right;
         }
 
