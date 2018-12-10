@@ -3,6 +3,7 @@ package chap19.Compression.HuffmanNRLE;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 
@@ -38,6 +39,15 @@ public class HuffmanNRLECompressApplication {
 		HuffmanCode huffmanCode = new HuffmanCode();
 		huffmanCode.createHuffmanTree(heap);
 		huffmanCode.printEachCharacterCode(huffmanCode.theRoot, arr, 0);
+		
+		String str = "AAACAABBCBBCEDDEFEGEE";
+		String encode = huffmanCode.encode(str);
+		String decode = huffmanCode.decode(encode);
+		System.out.println(str);
+		System.out.println(encode);
+		System.out.println(decode);
+		System.out.println(str.equals(decode));
+		
 	}
 	
 }
@@ -47,9 +57,13 @@ class HuffmanCode{
 	
 	public Heap<Run> heap;
 	public Run theRoot;
+	public HashMap<String, String> encodeWord;
+	public HashMap<String, String> decodeWord;
 	
 	public void createHuffmanTree(Heap _heap) {
 		this.heap= _heap;
+		encodeWord = new HashMap<>();
+		decodeWord = new HashMap<>();
 		makeHuffmanTree();
 	}
 	
@@ -98,11 +112,40 @@ class HuffmanCode{
 
 		if(htRoot.leftRun == null && htRoot.rightRun == null) // 단말 노드를 만났을 경우
 		{
+			StringBuilder code = new StringBuilder();
+			
 			System.out.print(htRoot.symbol + "(빈도 수: " + htRoot.freq +"): ");
-			for(int i=0;i<top;i++)
+			for(int i=0;i<top;i++){
 				System.out.print(trace[i]);
+				code.append(trace[i]);
+			}
+			encodeWord.put(String.valueOf(htRoot.symbol), code.toString());
+			decodeWord.put(code.toString(),String.valueOf(htRoot.symbol));
 			System.out.println("");
 		}
+	}
+	
+	public String encode(String str){
+		
+		StringBuilder dest = new StringBuilder();
+	    for (int i = 0; i < str.length(); i++) {
+	    	dest.append(encodeWord.get(str.charAt(i)+""));
+	    }
+		return dest.toString();
+	}
+	
+	public String decode(String str){
+		
+		StringBuilder dest = new StringBuilder();
+		StringBuilder code = new StringBuilder();
+	    for (int i = 0; i < str.length(); i++) {
+	    	code.append(str.charAt(i)+"");
+	    	if(decodeWord.get(code.toString())!=null){
+	    		dest.append(decodeWord.get(code.toString()));
+	    		code = new StringBuilder();
+	    	}
+	    }
+		return dest.toString();
 	}
 	
 }
