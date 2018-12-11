@@ -31,3 +31,5 @@ int fib(int n){
 
 ## 이항계수
 > nCr=(nr)=n!r!(n−r)!
+
+![binomial](./binomial.svg)
