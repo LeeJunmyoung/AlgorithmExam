@@ -1,4 +1,10 @@
 # 20. Dynamic Programming  
+
+## Memoization Vs Bottm-up
+> 순환식의 계산하는 기법
+> 둘다 동적 계획법의 일종
+> Memoization 은 top-down 방식 이며, 실제로 필요한 subproblem만을 푼다.
+> 동적계획법은 bottom-up 방식 이며, recursion에 수반되는 오버헤드가 없다. 
  
 ## 피보나치 수열   
 * 재귀 함수 문제점: 똑같은 값의 함수를 재실행 함. 많은 계산이 중복됨.  
