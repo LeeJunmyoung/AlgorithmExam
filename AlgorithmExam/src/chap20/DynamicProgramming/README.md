@@ -28,3 +28,6 @@ int fib(int n){
 	return f[n];	
 }
 ```
+
+## 이항계수
+> nCr=(nr)=n!r!(n−r)!
