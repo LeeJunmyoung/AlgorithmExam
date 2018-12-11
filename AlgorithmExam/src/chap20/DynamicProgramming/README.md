@@ -6,8 +6,7 @@
 1. 중간 계산 결과를 캐싱함으로써 중복 계산을 피함. (Memoizaion)  
 
 ```java
-int fib(int n)
-{
+int fib(int n){
 	if( n==1 || n==2 )
 		return 1;
 	else if( f[n] > -1 )
@@ -19,7 +18,7 @@ int fib(int n)
 }
 ```
 2. bottom-up 방식
-``` 
+```java 
 int fib(int n){
 
 	f[1]=f[2]=1;
@@ -33,3 +32,18 @@ int fib(int n){
 > nCr=(nr)=n!r!(n−r)!
 
 ![binomial](./binomial.svg)
+
+```java
+int binomial(int n, int k)
+{
+	for( int i = 0; i<=n ; i++){
+		for(int j=0;j<=k && j<=i;j++){
+			if( k==0 || n==k )
+				binom[i][j] = 1;
+			else
+				binom[i][j] = binom[i-1][j-1] + binom[i-1][j];
+		}
+	}
+	return binom[n][k];
+} 
+```
