@@ -5,8 +5,17 @@ public class KeyObservationApplictaion {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		KeyObservation keyObservation = new KeyObservation(10);
+		
+		
 		System.out.println("재귀 방식 : "+ keyObservation.recursiveMat(9, 9));
+		
+		keyObservation.initL();
+		
 		System.out.println("Memoization 방식 :"+ keyObservation.memoizationMat(9, 9));
+		
+		keyObservation.initL();
+		
+		System.out.println("Bottom-up 방식 :"+ keyObservation.bottomUpMat(9, 9));
 	}
 
 }
@@ -26,6 +35,12 @@ class KeyObservation{
 						};
 	KeyObservation(int size){
 		init(size);
+	}
+	
+	void initL(){
+		for(int i=0;i<L.length;i++)
+			for(int j=0;j<L.length;j++)
+				L[i][j]=-1;
 	}
 	void init(int size){
 		m= new int [size][size];
@@ -71,6 +86,25 @@ class KeyObservation{
 			L[i][j] = Math.min(recursiveMat(i-1, j), recursiveMat(i, j-1)) + m[i][j];
 		
 		return L[i][j];
+	}
+	
+	int bottomUpMat(int x, int y){
+		
+		for(int i=0;i<m.length;i++){
+			for(int j=0;j<m.length;j++){
+				if(i==0 && j==0)
+					L[i][j] = m[i][j];
+				else if(i==0)
+					L[i][j] = L[i][j-1] + m[i][j];
+				else if(j==0)
+					L[i][j] = L[i-1][j] + m[i][j];
+				else 
+					L[i][j] = Math.min(L[i-1][j], L[i][j-1]) + m[i][j];
+			}
+		}
+		
+		
+		return L[x][y];
 	}
 	
 }
