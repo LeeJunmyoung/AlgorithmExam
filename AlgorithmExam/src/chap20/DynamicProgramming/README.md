@@ -1,6 +1,6 @@
 # 20. Dynamic Programming  
 
-## Memoization Vs Bottm-up
+## Memoization Vs Dynamic Programming
 > 순환식의 계산하는 기법
 > 둘다 동적 계획법의 일종
 > Memoization 은 top-down 방식 이며, 실제로 필요한 subproblem만을 푼다.
@@ -53,3 +53,12 @@ int binomial(int n, int k)
 	return binom[n][k];
 } 
 ```
+
+## Key Observation
+> 정수들이 저장된 n x n 행렬의 좌상단에서 우하단까지 이동한다. 단 오른쪽 이나 아래쪽 방향으로만 이동한다.  
+> 방문한 칸에 있는 정수들의 합이 최소화 되도록 하라.  
+
+1. if i=1 && j=1 , m[i,j].value  
+2. if j=1 , L[i-1,j].sum + m[i,j].value  
+3. if i=1 , L[i,j-1].sum + m[i.j].value  
+4. if otherwise , min( L[i-1,j].sum , L[i,j-1].sum) + m[i,j].value  
