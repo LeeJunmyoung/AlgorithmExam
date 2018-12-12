@@ -58,6 +58,8 @@ int binomial(int n, int k)
 > 정수들이 저장된 n x n 행렬의 좌상단에서 우하단까지 이동한다. 단 오른쪽 이나 아래쪽 방향으로만 이동한다.  
 > 방문한 칸에 있는 정수들의 합이 최소화 되도록 하라.  
 
+* L[i,j].sum = (1,1)에서  (i,j) 까지 이르는 최소값.  
+* m[i,j].value = (i,j) 에 값.
 1. if i=1 && j=1 , m[i,j].value  
 2. if j=1 , L[i-1,j].sum + m[i,j].value  
 3. if i=1 , L[i,j-1].sum + m[i.j].value  
