@@ -1,5 +1,10 @@
 # 20. Dynamic Programming  
 
+## 동적 계획법
+> subproblem 들을 풀어서 원래 문제를 푸는 방식. 그런 의미에서 분할 정복법과 공통성이 있음  
+> 분할 ㅈㅇ복법에서는 분할된 문제들이 서로 disjoint 하지만 동적 계획법에서는 그렇지 않음.  
+> 즉, 서로 overlapping 하는 subproblem 들을 해결 함으로써 원래 문제를 해결.
+
 ## Memoization Vs Dynamic Programming
 > 순환식의 계산하는 기법
 > 둘다 동적 계획법의 일종
