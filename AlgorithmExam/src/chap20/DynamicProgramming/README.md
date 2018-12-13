@@ -1,9 +1,11 @@
 # 20. Dynamic Programming  
 
 ## 동적 계획법
-> subproblem 들을 풀어서 원래 문제를 푸는 방식. 그런 의미에서 분할 정복법과 공통성이 있음  
-> 분할 ㅈㅇ복법에서는 분할된 문제들이 서로 disjoint 하지만 동적 계획법에서는 그렇지 않음.  
-> 즉, 서로 overlapping 하는 subproblem 들을 해결 함으로써 원래 문제를 해결.
+> subproblem 들을 풀어서 원래 문제를 푸는 방식. 그런 의미에서 분할 정복법과 공통성이 있음    
+> 분할 ㅈㅇ복법에서는 분할된 문제들이 서로 disjoint 하지만 동적 계획법에서는 그렇지 않음.    
+> 즉, 서로 overlapping 하는 subproblem 들을 해결 함으로써 원래 문제를 해결.  
+> 어떤 문제의 최적ㄱ해가 그것의 subproblem 들의 최적해로부터 효율적으로 구해질 수 있을 때 그 문제는  optimal substructure 를 가진다 고 한다.  
+> A problem is said to have optimal substrructure if an optimal solution can be constructed efficiently from optimal solutions of its subproblems.  
 
 ## Memoization Vs Dynamic Programming
 > 순환식의 계산하는 기법
