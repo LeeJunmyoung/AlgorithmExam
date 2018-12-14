@@ -74,4 +74,10 @@ int binomial(int n, int k)
 1. if i=1 && j=1 , m[i,j].value  
 2. if j=1 , L[i-1,j].sum + m[i,j].value  
 3. if i=1 , L[i,j-1].sum + m[i.j].value  
-4. if otherwise , min( L[i-1,j].sum , L[i,j-1].sum) + m[i,j].value  
+4. if otherwise , min( L[i-1,j].sum , L[i,j-1].sum) + m[i,j].value    
+
+## Longest Common Subsequence
+> bcdb 는 abcbdab 의 subsequence 이다.  <a+'bc'+b+'d'+a+'b'>  
+> bca는 문자열 abcbdab 와 bdcaba 의 common subsequence 이다.  
+> Longest common subsequence (LCS)
+* common subsequence 중 가장긴것
