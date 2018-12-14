@@ -81,3 +81,7 @@ int binomial(int n, int k)
 > bca는 문자열 abcbdab 와 bdcaba 의 common subsequence 이다.  
 > Longest common subsequence (LCS)
 * common subsequence 중 가장긴것
+ 
+![LCS](./LCS.JPG)
+
+
