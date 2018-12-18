@@ -85,14 +85,15 @@ int binomial(int n, int k)
 ![LCS](./LCS.JPG)  
 
 ## Matrix Chain Multiplication  
-> 행렬 A는 10X100, B는 100X5, C는 5X50
-> 세 행렬의 곱 ABC는 두가지 방법으로 계산가능 (결합법칙이 성립)
-> 행렬의 곱 A(m x n) X B(n x r) = C (m x r)
-> 1.(AB)C : 7,500번의 곱셈이 필요 (10X100X5 + 10X5X50)
-> 2.A(BC) : 75,000번의 곱셈이 필요 ( 10 X 100 X 50 +( 100 X 5 X 50 ))
-> 즉 곱하는 순서에 따라서 연산량이 다름.
+> 행렬 A는 10X100, B는 100X5, C는 5X50  
+> 세 행렬의 곱 ABC는 두가지 방법으로 계산가능 (결합법칙이 성립)  
+> 행렬의 곱 A(m x n) X B(n x r) = C (m x r)  
+> 1.(AB)C : 7,500번의 곱셈이 필요 (10X100X5 + 10X5X50)  
+> 2.A(BC) : 75,000번의 곱셈이 필요 ( 10 X 100 X 50 +( 100 X 5 X 50 ))  
+> 즉 곱하는 순서에 따라서 연산량이 다름.  
+> n개의 행렬의 곱 을 계산하는 최적의 순서는?  
 
-
+![MatrixChainMultiple](./MatrixChainMultiple.JPG)  
 
 
 
